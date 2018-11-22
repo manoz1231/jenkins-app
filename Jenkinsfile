@@ -3,14 +3,7 @@ pipeline {
       DOCKER = credentials('docker-hub')
     }
   agent any
-  stages {
-// Remote server login
-    stage('REMOTE LOGIN') {
-      steps {
-        sh 'ssh root@172.16.10.128'
-      }
-    }
-  }   
+  stages {   
 // Building your Test Images
     stage('BUILD') {
       parallel {
