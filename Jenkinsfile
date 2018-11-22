@@ -9,7 +9,7 @@ pipeline {
       parallel {
         stage('Express Image') {
           steps {
-            sh 'su jenkins'  
+             
             sh 'docker build -f express-image/Dockerfile \
             -t nodeapp-dev:trunk .'
           }
