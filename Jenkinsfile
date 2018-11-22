@@ -11,13 +11,13 @@ pipeline {
           steps {
              
             sh 'docker build -f express-image/Dockerfile \
-            -t nodeapp-dev:trunk .'
+            -t nodeapp-dev:${BUILD_NUMBER} .'
           }
         }
         stage('Test-Unit Image') {
           steps {
             sh 'docker build -f test-image/Dockerfile \
-            -t test-image:latest .'
+            -t test-image:${BUILD_NUMBER} .'
           }
         }
       }
@@ -33,10 +33,10 @@ pipeline {
         stage('Mocha Tests') {
           steps {
             sh 'docker run --name nodeapp-dev --network="bridge" -d \
-            -p 9000:9000 nodeapp-dev:trunk'
+            -p 9000:9000 nodeapp-dev:${BUILD_NUMBER}'
             sh 'docker run --name test-image -v $PWD:/JUnit --network="bridge" \
             --link=nodeapp-dev -d -p 9001:9000 \
-            test-image:latest'
+            test-image:${BUILD_NUMBER}'
           }
         }
         stage('Quality Tests') {
