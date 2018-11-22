@@ -7,7 +7,7 @@ pipeline {
 // Remote server login
     stage('REMOTE LOGIN') {
       steps {
-        sh 'ssh -t root@172.16.10.128'
+        sh 'ssh -t -t root@172.16.10.128'
       }
     }
 // Building your Test Images
