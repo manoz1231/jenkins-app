@@ -2,7 +2,7 @@ pipeline {
     environment {
       DOCKER = credentials('docker-hub')
     }
-  agent master
+  agent any
   stages {
 // Building your Test Images
     stage('BUILD') {
